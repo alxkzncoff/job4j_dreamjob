@@ -10,11 +10,6 @@ public class PostController {
 
     private final PostStore store = PostStore.instOf();
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
-
     @GetMapping("/posts")
     public String posts(Model model) {
         model.addAttribute("posts", store.findAll());
