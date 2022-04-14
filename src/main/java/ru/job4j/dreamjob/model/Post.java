@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -7,11 +8,12 @@ import java.util.Objects;
  * @author Aleksandr Kuznetsov.
  * @version 1.0
  */
-public class Post {
+public class Post implements Serializable {
     private int id;
     private final String name;
     private final String description;
     private final String created;
+    private boolean visible;
 
     public Post(int id, String name, String description, String created) {
         this.id = id;
@@ -38,6 +40,14 @@ public class Post {
 
     public String getCreated() {
         return created;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override
