@@ -12,6 +12,7 @@ public class Candidate {
     private final String name;
     private final String description;
     private final String created;
+    private byte[] photo;
 
     public Candidate(int id, String name, String description, String created) {
         this.id = id;
@@ -38,6 +39,14 @@ public class Candidate {
 
     public String getCreated() {
         return created;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override
