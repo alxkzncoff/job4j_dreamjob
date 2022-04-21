@@ -1,5 +1,8 @@
 package ru.job4j.dreamjob;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +19,8 @@ import java.util.Properties;
  */
 @SpringBootApplication
 public class Main {
+    private static final Logger LOG = LogManager.getLogger(Main.class.getName());
+
     private Properties loadDbProperties() {
         Properties cfg = new Properties();
         try (BufferedReader io = new BufferedReader(
@@ -26,12 +31,12 @@ public class Main {
         )) {
             cfg.load(io);
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            LOG.error("IllegalStateException", e);
         }
         try {
             Class.forName(cfg.getProperty("jdbc.driver"));
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            LOG.error("IllegalStateException", e);
         }
         return cfg;
     }
