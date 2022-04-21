@@ -10,9 +10,9 @@ import java.util.Objects;
  */
 public class Post implements Serializable {
     private int id;
-    private final String name;
-    private final String description;
-    private final String created;
+    private String name;
+    private String description;
+    private String created;
     private boolean visible;
     private City city;
 
@@ -36,12 +36,24 @@ public class Post implements Serializable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getCreated() {
         return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 
     public boolean isVisible() {
