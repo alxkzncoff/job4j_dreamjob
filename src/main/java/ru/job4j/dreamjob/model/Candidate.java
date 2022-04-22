@@ -9,9 +9,9 @@ import java.util.Objects;
  */
 public class Candidate {
     private int id;
-    private final String name;
-    private final String description;
-    private final String created;
+    private String name;
+    private String description;
+    private String created;
     private byte[] photo;
 
     public Candidate(int id, String name, String description, String created, byte[] photo) {
@@ -34,12 +34,24 @@ public class Candidate {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getCreated() {
         return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 
     public byte[] getPhoto() {
