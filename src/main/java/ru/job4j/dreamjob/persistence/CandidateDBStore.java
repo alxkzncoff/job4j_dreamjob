@@ -1,7 +1,7 @@
 package ru.job4j.dreamjob.persistence;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Repository
 public class CandidateDBStore {
-    private static final Logger LOG = LogManager.getLogger(CandidateDBStore.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(CandidateDBStore.class.getName());
 
     private final BasicDataSource pool;
 

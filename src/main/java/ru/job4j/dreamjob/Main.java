@@ -1,7 +1,7 @@
 package ru.job4j.dreamjob;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +19,7 @@ import java.util.Properties;
  */
 @SpringBootApplication
 public class Main {
-    private static final Logger LOG = LogManager.getLogger(Main.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(Main.class.getName());
 
     private Properties loadDbProperties() {
         Properties cfg = new Properties();
