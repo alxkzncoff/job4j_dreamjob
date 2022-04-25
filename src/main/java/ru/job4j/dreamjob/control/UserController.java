@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.UserService;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 @ThreadSafe
@@ -28,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(Model model, @ModelAttribute User user) throws SQLException {
+    public String registration(Model model, @ModelAttribute User user) {
         Optional<User> regUser = userService.add(user);
         if (regUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с таким именем уже существует!");

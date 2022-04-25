@@ -9,6 +9,7 @@ import ru.job4j.dreamjob.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 /**
  * Класс-хранилще пользователей в БД.
@@ -29,8 +30,8 @@ public class UserDBStore {
      * Метод добавляет пользователя в БД.
      * @param user Пользователь.
      */
-    public User add(User user) {
-        User result = null;
+    public Optional<User> add(User user) {
+        Optional<User> result = Optional.empty();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users(name, password) VALUES (?, ?)",
@@ -44,7 +45,7 @@ public class UserDBStore {
                     user.setId(id.getInt(1));
                 }
             }
-            result = user;
+            result = Optional.of(user);
         } catch (Exception e) {
             LOG.error("Exception", e);
         }

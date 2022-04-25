@@ -18,7 +18,7 @@ public class UserDBStoreTest {
     public void whenRegistrationSuccess() {
         UserDBStore store = new UserDBStore(new Main().loadPool());
         User user = new User(0, "user", "password");
-        assertThat(store.add(user), is(user));
+        assertThat(store.add(user).orElse(null), is(user));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class UserDBStoreTest {
         UserDBStore store = new UserDBStore(new Main().loadPool());
         User user = new User(1, "user1", "password");
         store.add(user);
-        assertNull(store.add(user));
+        assertTrue(store.add(user).isEmpty());
     }
 
     @After
