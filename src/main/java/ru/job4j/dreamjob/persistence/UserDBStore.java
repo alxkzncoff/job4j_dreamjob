@@ -29,6 +29,7 @@ public class UserDBStore {
     /**
      * Метод добавляет пользователя в БД.
      * @param user Пользователь.
+     * @return Optional<User> пользователь.
      */
     public Optional<User> add(User user) {
         Optional<User> result = Optional.empty();
@@ -46,6 +47,32 @@ public class UserDBStore {
                 }
             }
             result = Optional.of(user);
+        } catch (Exception e) {
+            LOG.error("Exception", e);
+        }
+        return result;
+    }
+
+    /**
+     * Метод ищет пользователя по имени и паролю.
+     * @param name Имя пользователя.
+     * @param password Пароль пользователя.
+     * @return Optional<User> пользователь.
+     */
+    public Optional<User> findUserByNameAndPwd(String name, String password) {
+        Optional<User> result = Optional.empty();
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "SELECT * FROM users WHERE name = ? and password = ?")
+        ) {
+            ps.setString(1, name);
+            ps.setString(2, password);
+            try (ResultSet it = ps.executeQuery()) {
+                if (it.next()) {
+                    result = Optional.of(new User(it.getString("name"),
+                            it.getString("password")));
+                }
+            }
         } catch (Exception e) {
             LOG.error("Exception", e);
         }
