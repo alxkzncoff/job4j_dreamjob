@@ -17,14 +17,14 @@ public class UserDBStoreTest {
     @Test
     public void whenRegistrationSuccess() {
         UserDBStore store = new UserDBStore(new Main().loadPool());
-        User user = new User(0, "user", "password");
+        User user = new User("user", "password");
         assertThat(store.add(user).orElse(null), is(user));
     }
 
     @Test
     public void whenRegistrationFail() {
         UserDBStore store = new UserDBStore(new Main().loadPool());
-        User user = new User(1, "user1", "password");
+        User user = new User("user1", "password");
         store.add(user);
         assertTrue(store.add(user).isEmpty());
     }
